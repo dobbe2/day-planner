@@ -1,0 +1,18 @@
+PsuedoCode for Day Planner
+
+header with "work day schedular", 
+a descrition of the day planner, 
+and real time listed (use ) moment.js
+
+make a table with one table row for each hour between 9am and 5pm
+
+3 columns, time, input area, and save event button
+
+time columns are just HTML of the hour
+
+Input area is a tet area that can be saved to local storage
+
+save event button will have event listener for save data.
+
+when 
+
