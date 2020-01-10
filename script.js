@@ -1,41 +1,71 @@
+$(document).ready(function () {
 
-//getting current time from timer.js//
-var currentTime = function() {
-    document.getElementById("currentDate")
-    .innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
-}
-setInterval(currentTime, 1000);
+    //getting current time from timer.js//
+    var currentTime = function () {
+        document.getElementById("currentDate").innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
+    
 
-//display time below H1//
-$("#currentDate").append(currentTime);
+    }
+    setInterval(currentTime, 1000);
+    
 
-//set current hour event to new color//
-let currentHour =moment().format('h');
-console.log(currentHour);
-if (currentHour == 9){
-    $("#9plan").addClass('currentHour'); 
-}
-if (currentHour == 10){
-    $("#10plan").addClass('currentHour'); 
-}
-if (currentHour == 11){
-    $("#11plan").addClass('currentHour'); 
-}
-if (currentHour == 12){
-    $("#12plan").addClass('currentHour'); 
-}
-if (currentHour == 1){
-    $("#1plan").addClass('currentHour'); 
-}
-if (currentHour == 2){
-    $("#2plan").addClass('currentHour'); 
-}
-if (currentHour == 3){
-    $("#3plan").addClass('currentHour'); 
-}
-if (currentHour == 4){
-    $("#4plan").addClass('currentHour'); 
-}
-if (currentHour == 5){
-    $("#5plan").addClass('currentHour'); 
-}
+    //display time below H1//
+    $("#currentDate").append(currentTime);
+
+    //set current hour event to new color (class)//
+
+    function setHour() {
+        let currentHour = moment().hours();
+        console.log(currentHour);
+        currentHour = 9
+        var local = JSON.parse(localStorage.getItem("daily"))
+        console.log(local)
+        $(".block").each(function () {
+            var hour = parseInt($(this).attr("hour"))
+            $(this).children().val(local[hour])
+            if (hour < currentHour) {
+                $(this).addClass('pastHour');
+            }
+            else if (hour === currentHour) {
+                $(this).removeClass("pastHour")
+                $(this).addClass("currentHour");
+            } else {
+                $(this).removeClass("pastHour")
+                $(this).removeClass("currentHour")
+                $(this).addClass("futureHour");
+
+            }
+        })
+    }
+    
+
+    //using button click to save event to page and local storage//
+    $(".save").on("click", function () {
+        var input = $(this).parent().siblings(".block").children().val()
+        var hour = $(this).parent().siblings(".block").attr("hour")
+        console.log("hour", hour)
+        console.log(input);
+
+        var local = JSON.parse(localStorage.getItem("daily"))
+        if (!local){
+            local={}
+        }
+        local[hour]=input
+        console.log(local)
+        localStorage.setItem("daily", JSON.stringify(local))
+
+    })
+
+    //clearing local storage...App not working when cleared
+    $("#clearSchedule").on("click", function(){
+    //     localStorage.clear()
+        $(".userInput").val("")
+    })
+
+    //check to see if hour has changed
+    let interval = setInterval(function(){
+        setHour()
+    }, 30000)
+    setHour()
+    //end of document.ready//
+})
