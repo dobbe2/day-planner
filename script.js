@@ -16,11 +16,9 @@ $(document).ready(function () {
 
     function setHour() {
 
-        //if localstorage is empty, do not run this function//
-
         let currentHour = moment().hours();
         console.log(currentHour);
-        // currentHour = 
+        // currentHour = 12
         let local = JSON.parse(localStorage.getItem("daily"))
         console.log(local)
         // if (localStorage.getItem(local) !== null){
@@ -45,7 +43,6 @@ $(document).ready(function () {
             }
         })
     }
-    
     //using button click to save event to page and local storage//
     $(".save").on("click", function () {
         let input = $(this).parent().siblings(".block").children().val()
@@ -63,9 +60,8 @@ $(document).ready(function () {
 
     })
 
-    //clearing local storage...App not working when cleared
+    //clearing local storage
     $("#clearSchedule").on("click", function(){
-        debugger
         localStorage.clear()
         $(".userInput").val("")
         
