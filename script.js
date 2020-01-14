@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     //getting current time from timer.js//
-    var currentTime = function () {
+    let currentTime = function () {
         document.getElementById("currentDate").innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
     
 
@@ -15,21 +15,29 @@ $(document).ready(function () {
     //set current hour event to new color (class)//
 
     function setHour() {
+
+        //if localstorage is empty, do not run this function//
+
         let currentHour = moment().hours();
         console.log(currentHour);
-        currentHour = 9
-        var local = JSON.parse(localStorage.getItem("daily"))
+        // currentHour = 
+        let local = JSON.parse(localStorage.getItem("daily"))
         console.log(local)
+        // if (localStorage.getItem(local) !== null){
         $(".block").each(function () {
-            var hour = parseInt($(this).attr("hour"))
+            let hour = parseInt($(this).attr("hour"))
             $(this).children().val(local[hour])
             if (hour < currentHour) {
-                $(this).addClass('pastHour');
+                $(this).removeClass("futureHour");
+                $(this).removeClass("currentHour");
+                $(this).addClass("pastHour");
             }
             else if (hour === currentHour) {
-                $(this).removeClass("pastHour")
+                $(this).removeClass("futureHour");
+                $(this).removeClass("pastHour");
                 $(this).addClass("currentHour");
-            } else {
+            } 
+            else {
                 $(this).removeClass("pastHour")
                 $(this).removeClass("currentHour")
                 $(this).addClass("futureHour");
@@ -38,15 +46,14 @@ $(document).ready(function () {
         })
     }
     
-
     //using button click to save event to page and local storage//
     $(".save").on("click", function () {
-        var input = $(this).parent().siblings(".block").children().val()
-        var hour = $(this).parent().siblings(".block").attr("hour")
+        let input = $(this).parent().siblings(".block").children().val()
+        let hour = $(this).parent().siblings(".block").attr("hour")
         console.log("hour", hour)
         console.log(input);
 
-        var local = JSON.parse(localStorage.getItem("daily"))
+        let local = JSON.parse(localStorage.getItem("daily"))
         if (!local){
             local={}
         }
@@ -58,8 +65,10 @@ $(document).ready(function () {
 
     //clearing local storage...App not working when cleared
     $("#clearSchedule").on("click", function(){
-    //     localStorage.clear()
+        debugger
+        localStorage.clear()
         $(".userInput").val("")
+        
     })
 
     //check to see if hour has changed
@@ -67,5 +76,5 @@ $(document).ready(function () {
         setHour()
     }, 30000)
     setHour()
-    //end of document.ready//
+//end of document.ready//
 })
