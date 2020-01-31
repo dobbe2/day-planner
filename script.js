@@ -18,8 +18,11 @@ $(document).ready(function () {
 
         let currentHour = moment().hours();
         console.log(currentHour);
-        // currentHour = 12
         let local = JSON.parse(localStorage.getItem("daily"))
+        if (!local){
+            local={}
+        }
+
         console.log(local)
         // if (localStorage.getItem(local) !== null){
         $(".block").each(function () {
