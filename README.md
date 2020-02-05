@@ -11,7 +11,7 @@ A day planner designed to let the user save events for each hour of the work day
 * Calendar saves to local storage, keeping your events saved during a browser close/refresh.
 
 
-## How to use
+## Where to find
 
 Visit https://dobbe2.github.io/day-planner/
 
