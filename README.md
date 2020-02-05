@@ -1,7 +1,6 @@
 # Day-Planner
 A day planner designed to let the user save events for each hour of the work day, allowing them to see their day at a glance, schedule time effectively, and improve productivity.  
 
-
 ![mainPage](https://i.imgur.com/GcrakMu.png)
 
 ## Features
@@ -9,7 +8,12 @@ A day planner designed to let the user save events for each hour of the work day
 * An hourly display of time for your workday.
 * Color changing timeblocks to indicate past, present, or future time.
 * Current day and time at the top of the planner.
-* Calendar saves to local storage, keeping your events saved during a quit/refresh.
+* Calendar saves to local storage, keeping your events saved during a browser close/refresh.
+
+
+## How to use
+
+Visit https://dobbe2.github.io/day-planner/
 
 ## Libraries Used
 
