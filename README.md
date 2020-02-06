@@ -1,7 +1,7 @@
 # Day-Planner
 A day planner designed to let the user save events for each hour of the work day, allowing them to see their day at a glance, schedule time effectively, and improve productivity.  
 
-![mainPage](https://i.imgur.com/GcrakMu.png)
+![](https://i.imgur.com/GcrakMu.png)
 
 ## Features
 
